@@ -1,0 +1,26 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mapper.bacSiMapper;
+import model.bacSi;
+
+public class bacSiDao extends abstractDao<bacSi>{
+	public List<bacSi> listAll(){
+		String sql = "Select * from bacSi";
+		return query(sql, new bacSiMapper());
+	}
+	public bacSi Login(String taiKhoan,String matKhau) {
+		List<bacSi> result = listAll();
+		for (bacSi bacSi : result) {
+			if(bacSi.getTaiKhoan().equals(taiKhoan)) {
+				if(bacSi.getMatKhau().equals(matKhau)) {
+					return bacSi;
+				}
+			}
+		}
+		return null;
+	}
+}
+

@@ -1,0 +1,14 @@
+package mapper;
+
+import java.sql.ResultSet;
+
+import model.bacSi;
+
+public class bacSiMapper implements rowMapper<bacSi> {
+
+	public bacSi mapRow(ResultSet rs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

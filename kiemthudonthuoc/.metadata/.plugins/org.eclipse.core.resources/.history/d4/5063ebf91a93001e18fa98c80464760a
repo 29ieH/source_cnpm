@@ -1,0 +1,119 @@
+package model;
+
+public class bacSi {
+	private int idBacSi;
+	private String taiKhoan;
+	private String matKhau;
+	private String tenBacSi;
+	private String gioiTinh;
+	private int tuoi;
+	private int trangthai;
+	
+	public bacSi(int idBacSi, String taiKhoan, String matKhau, String tenBacSi, String gioiTinh, int tuoi,
+			int trangthai) {
+		super();
+		this.idBacSi = idBacSi;
+		this.taiKhoan = taiKhoan;
+		this.matKhau = matKhau;
+		this.tenBacSi = tenBacSi;
+		this.gioiTinh = gioiTinh;
+		this.tuoi = tuoi;
+		this.trangthai = trangthai;
+	}
+
+	public int getIdBacSi() {
+		return idBacSi;
+	}
+
+	public void setIdBacSi(int idBacSi) {
+		this.idBacSi = idBacSi;
+	}
+
+	public String getTaiKhoan() {
+		return taiKhoan;
+	}
+
+	public void setTaiKhoan(String taiKhoan) {
+		this.taiKhoan = taiKhoan;
+	}
+
+	public String getMatKhau() {
+		return matKhau;
+	}
+
+	public void setMatKhau(String matKhau) {
+		this.matKhau = matKhau;
+	}
+
+	public String getTenBacSi() {
+		return tenBacSi;
+	}
+
+	public void setTenBacSi(String tenBacSi) {
+		this.tenBacSi = tenBacSi;
+	}
+
+	public String getGioiTinh() {
+		return gioiTinh;
+	}
+
+	public void setGioiTinh(String gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+
+	public int getTuoi() {
+		return tuoi;
+	}
+
+	public void setTuoi(int tuoi) {
+		this.tuoi = tuoi;
+	}
+
+	public int getTrangthai() {
+		return trangthai;
+	}
+
+	public void setTrangthai(int trangthai) {
+		this.trangthai = trangthai;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		bacSi other = (bacSi) obj;
+		if (gioiTinh == null) {
+			if (other.gioiTinh != null)
+				return false;
+		} else if (!gioiTinh.equals(other.gioiTinh))
+			return false;
+		if (idBacSi != other.idBacSi)
+			return false;
+		if (matKhau == null) {
+			if (other.matKhau != null)
+				return false;
+		} else if (!matKhau.equals(other.matKhau))
+			return false;
+		if (taiKhoan == null) {
+			if (other.taiKhoan != null)
+				return false;
+		} else if (!taiKhoan.equals(other.taiKhoan))
+			return false;
+		if (tenBacSi == null) {
+			if (other.tenBacSi != null)
+				return false;
+		} else if (!tenBacSi.equals(other.tenBacSi))
+			return false;
+		if (trangthai != other.trangthai)
+			return false;
+		if (tuoi != other.tuoi)
+			return false;
+		return true;
+	}
+
+	
+}

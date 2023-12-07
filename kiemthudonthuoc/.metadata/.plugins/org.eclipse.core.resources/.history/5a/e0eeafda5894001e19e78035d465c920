@@ -1,0 +1,74 @@
+package model;
+
+import java.sql.Date;
+
+public class thuoc {
+private int idThuoc;
+private int idLoaiThuoc;
+private String tenThuoc;
+private int soLuongTrongKho;
+private float doseMin;
+private float doseMax;
+private float frequency;
+private Date ngayHetHan;
+private String moTaThuoc;
+private String donVi;
+public thuoc(int idThuoc, int idLoaiThuoc, String tenThuoc, int soLuongTrongKho, String donVi, Date ngayHetHan,
+		String moTaThuoc) {
+	this.idThuoc = idThuoc;
+	this.idLoaiThuoc = idLoaiThuoc;
+	this.tenThuoc = tenThuoc;
+	this.soLuongTrongKho = soLuongTrongKho;
+	this.donVi = donVi;
+	this.ngayHetHan = ngayHetHan;
+	this.moTaThuoc = moTaThuoc;
+}
+public int getIdThuoc() {
+	return idThuoc;
+}
+public void setIdThuoc(int idThuoc) {
+	this.idThuoc = idThuoc;
+}
+public int getIdLoaiThuoc() {
+	return idLoaiThuoc;
+}
+public void setIdLoaiThuoc(int idLoaiThuoc) {
+	this.idLoaiThuoc = idLoaiThuoc;
+}
+public String getTenThuoc() {
+	return tenThuoc;
+}
+public void setTenThuoc(String tenThuoc) {
+	this.tenThuoc = tenThuoc;
+}
+public int getSoLuongTrongKho() {
+	return soLuongTrongKho;
+}
+public void setSoLuongTrongKho(int soLuongTrongKho) {
+	this.soLuongTrongKho = soLuongTrongKho;
+}
+public String getDonVi() {
+	return donVi;
+}
+public void setDonVi(String donVi) {
+	this.donVi = donVi;
+}
+public Date getNgayHetHan() {
+	return ngayHetHan;
+}
+public void setNgayHetHan(Date ngayHetHan) {
+	this.ngayHetHan = ngayHetHan;
+}
+public String getMoTaThuoc() {
+	return moTaThuoc;
+}
+public void setMoTaThuoc(String moTaThuoc) {
+	this.moTaThuoc = moTaThuoc;
+}
+@Override
+public String toString() {
+	return "thuoc [idThuoc=" + idThuoc + ", idLoaiThuoc=" + idLoaiThuoc + ", tenThuoc=" + tenThuoc
+			+ ", soLuongTrongKho=" + soLuongTrongKho + ", donVi=" + donVi + ", ngayHetHan=" + ngayHetHan
+			+ ", moTaThuoc=" + moTaThuoc + "]";
+}
+}

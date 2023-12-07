@@ -1,0 +1,73 @@
+package model;
+
+public class bacSi {
+	private int idBacSi;
+	private String tenBacSi;
+	private String gioiTinh;
+	private int tuoi;
+	public bacSi(int idBacSi, String tenBacSi, String gioiTinh, int tuoi) {
+		super();
+		this.idBacSi = idBacSi;
+		this.tenBacSi = tenBacSi;
+		this.gioiTinh = gioiTinh;
+		this.tuoi = tuoi;
+	}
+	public int getIdBacSi() {
+		return idBacSi;
+	}
+
+	public void setIdBacSi(int idBacSi) {
+		this.idBacSi = idBacSi;
+	}
+
+	public String getTenBacSi() {
+		return tenBacSi;
+	}
+
+	public void setTenBacSi(String tenBacSi) {
+		this.tenBacSi = tenBacSi;
+	}
+
+	public String getGioiTinh() {
+		return gioiTinh;
+	}
+
+	public void setGioiTinh(String gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+
+	public int getTuoi() {
+		return tuoi;
+	}
+
+	public void setTuoi(int tuoi) {
+		this.tuoi = tuoi;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		bacSi other = (bacSi) obj;
+		if (gioiTinh == null) {
+			if (other.gioiTinh != null)
+				return false;
+		} else if (!gioiTinh.equals(other.gioiTinh))
+			return false;
+		if (idBacSi != other.idBacSi)
+			return false;
+		if (tenBacSi == null) {
+			if (other.tenBacSi != null)
+				return false;
+		} else if (!tenBacSi.equals(other.tenBacSi))
+			return false;
+		if (tuoi != other.tuoi)
+			return false;
+		return true;
+	}
+	
+	
+}

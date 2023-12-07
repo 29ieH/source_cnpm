@@ -1,0 +1,7 @@
+package dao;
+
+import model.bacSi;
+
+public class bacSiDao extends abstractDao<bacSi>{
+
+}

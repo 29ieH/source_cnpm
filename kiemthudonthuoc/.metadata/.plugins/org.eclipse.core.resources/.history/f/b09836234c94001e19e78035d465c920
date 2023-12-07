@@ -1,0 +1,11 @@
+package dao;
+
+import java.util.List;
+
+import model.donThuoc;
+
+public class donThuocDao extends abstractDao<donThuoc> {
+	List<donThuoc> listOfBn(int idbn){
+		
+	}
+}

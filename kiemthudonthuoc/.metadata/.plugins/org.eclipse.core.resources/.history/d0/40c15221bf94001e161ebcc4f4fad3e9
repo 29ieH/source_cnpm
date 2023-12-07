@@ -1,0 +1,15 @@
+package ServiceImp;
+
+import java.util.List;
+
+import dao.donThuocDao;
+import ifService.donThuocIF;
+import model.donThuoc;
+
+public class donThuocImp implements donThuocIF {
+
+	public List<donThuoc> listOfBn(int id) {
+		return new donThuocDao().listOfBn(id);
+	}
+
+}

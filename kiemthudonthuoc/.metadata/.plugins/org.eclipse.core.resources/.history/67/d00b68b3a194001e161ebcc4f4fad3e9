@@ -1,0 +1,7 @@
+package ifService;
+
+import java.util.List;
+
+public interface thuocIF {
+	List<String> listNameOfCtdt(int idD,int idThuoc);
+}

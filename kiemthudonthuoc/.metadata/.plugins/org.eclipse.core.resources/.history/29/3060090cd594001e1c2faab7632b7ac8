@@ -1,0 +1,32 @@
+package dao;
+
+import java.util.List;
+
+import mapper.chiTietDonThuocMapper;
+import model.chiTietDonThuoc;
+
+public class chiTietDTDao extends abstractDao<chiTietDonThuoc> {
+	
+	public List<chiTietDonThuoc> listOfIdDt(int iddt){
+		String sql = "select * from chitietdonthuoc where idDonThuoc = ?";
+		return query(sql, new chiTietDonThuocMapper(), iddt);
+	}
+	public void createCtdt(List<chiTietDonThuoc> list) {
+		String sql = "  insert into chitietdonthuoc values (?,?,?,?,?,?)";
+		for (chiTietDonThuoc chiTietDonThuoc : list) {
+			save(sql, chiTietDonThuoc.getIdThuoc(),chiTietDonThuoc.getIdThuoc(),chiTietDonThuoc.getSoLuongDungTrenMotLan(),
+			chiTietDonThuoc.getSoLanUongTrenMotNgay(),chiTietDonThuoc.getSoLuongMua(),chiTietDonThuoc.getDanDoCuaBacSy());
+		}
+	}
+	public static void main(String[] args) {
+		int idDT = 8;
+		int idT = 12;
+		float dose = 1;
+		float frequency = 2;
+		int soluong = 10;
+		String danDoBacSy = "Uống ngay sau khi ăn";
+		int check;
+		check = new chiTietDTDao().createCtdt(idDT, idT, dose, frequency,soluong,danDoBacSy);
+		System.out.println(check);
+	}
+}

@@ -1,0 +1,77 @@
+package controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.thuocDao;
+import model.thuoc;
+
+/**
+ * Servlet implementation class taodonthuoc
+ */
+public class taodonthuoc extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public taodonthuoc() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			String tenThuoc = request.getParameter("name");
+			String doseStr = request.getParameter("dose");
+			String frequencyStr = request.getParameter("frequency");
+			String amountStr = request.getParameter("amount");
+			String comment = request.getParameter("comments");
+			float dose = 0;
+			float frequency = 0;
+			int amount = 0;
+			try {
+				String error ="";
+				List<thuoc> listResult = new thuocDao().listOfName(tenThuoc);
+				dose = Float.parseFloat(doseStr);
+				frequency = Float.parseFloat(frequencyStr);
+				amount = Integer.parseInt(amountStr);
+				if(listResult!=null) {
+					thuoc rsThuoc = listResult.get(0);
+					if(dose<rsThuoc.getDoseMin()) {
+						error +="Liều dùng quá thấp !";
+					}else if(dose>rsThuoc.getDoseMax()) {
+						error +="Liều dùng quá cao !";
+					}else if(frequency>rsThuoc.getFrequency()) {
+						error +="Tần suất dùng quá cao !";
+					}else if((dose*frequency)<1||(dose*frequency)>(rsThuoc.getDoseMax()*rsThuoc.getFrequency())) {
+						error +="Số lượng chỉ định thuốc không phù hợp";
+					}
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,35 @@
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi người dùng nhập vào ô tìm kiếm
+        $('#txtSearch').on('input', function () {
+            // Lấy giá trị nhập vào
+            var query = $(this).val();
+
+            // Gửi yêu cầu AJAX đến máy chủ để lấy kết quả gợi ý
+            $.ajax({
+                url: '/your/search/endpoint', // Đường dẫn đến endpoint xử lý tìm kiếm
+                method: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    // Hiển thị kết quả gợi ý
+                    $('#searchResults').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        // Bắt sự kiện khi người dùng chọn một kết quả từ gợi ý
+        $('#searchResults').on('click', 'li', function () {
+            // Lấy giá trị đã chọn từ kết quả gợi ý
+            var selectedValue = $(this).text();
+            
+            // Hiển thị giá trị đã chọn trong ô tìm kiếm
+            $('#txtSearch').val(selectedValue);
+
+            // Xóa kết quả gợi ý
+            $('#searchResults').html("");
+        });
+    });
+</script>

@@ -1,0 +1,7 @@
+package ServiceImp;
+
+import ifService.chiTietDonThuocIF;
+
+public class chiTietDonThuocImp implements chiTietDonThuocIF {
+
+}

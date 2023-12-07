@@ -1,0 +1,21 @@
+package test;
+
+import java.util.List;
+
+import dao.thuocDao;
+import model.thuoc;
+
+public class testLieuDung {
+	public boolean test() {
+		List<thuoc> listAll = new thuocDao().listAll();
+		int id = 0;
+		int dose = 0;
+		int frequency = 0;
+		boolean check = false;
+		System.out.println("Kiểm tra liêu dùng");
+		System.out.println("List thuốc trong kho");
+		for (thuoc thuoc : listAll) {
+			System.out.println(thuoc);
+		}
+	}
+}

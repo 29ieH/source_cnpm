@@ -1,0 +1,13 @@
+package ServiceImp;
+
+import java.util.List;
+
+import dao.thuocDao;
+import ifService.thuocIF;
+import model.chiTietDonThuoc;
+
+public class thuocImp implements thuocIF {
+	public List<String> listNameOfCtdt(List<chiTietDonThuoc> lctdt) {
+		return new thuocDao().nameOfId(lctdt);
+	}
+}

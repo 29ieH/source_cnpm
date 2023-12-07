@@ -1,0 +1,30 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mapper.thuocMapper;
+import model.chiTietDonThuoc;
+import model.thuoc;
+
+public class thuocDao extends abstractDao<thuoc> {
+	
+	List<String> nameOfId(List<chiTietDonThuoc> listctdt){
+		List<String> result = new ArrayList<String>();
+		String sql = "select tenThuoc from thuoc as t join chitietdonthuoc as ctdt on t.idThuoc = ctdt.idThuoc where idDonThuoc = ? and ctdt.idThuoc = ?";
+		for (chiTietDonThuoc chiTietDonThuoc : listctdt) {
+			List<thuoc> list = query(sql, new thuocMapper(),chiTietDonThuoc.getIdDonThuoc(),chiTietDonThuoc.getIdThuoc());
+			System.out.println(list);
+			thuoc newT = list.get(0);
+			result.add(newT.getTenThuoc());
+			list.clear();
+		}
+		return result;
+	}
+	public static void main(String[] args) {
+		List<String> result = new ArrayList<String>();
+		List<chiTietDonThuoc> list = new chiTietDTDao().listOfIdDt(1);
+		result = new thuocDao().nameOfId(list);
+		System.out.println(result);		
+	}
+}

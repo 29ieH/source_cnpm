@@ -1,0 +1,7 @@
+package mapper_test;
+
+import java.sql.ResultSet;
+
+public interface rowMapper<T> {
+	public T mapRow(ResultSet rs);
+}

@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+         <%@include file = "/util/taglib.jsp"%>
+     <%@include file = "/util/libfont.jsp"%>
+     <%@include file = "/util/libweb.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="<c:url value ="/css/style.css"/>">
+</head>
+<c:set var="model" value="${applicationScope.model}"/>
+<body>
+<div class = "w-1462px">
+    <div class="chi_tiet_ho_so">
+        <div class="function-list">
+            <div class="chi_tiet_ho_so-list-first">
+                <i class="fa-solid fa-bars"></i>
+                <p>Chức Năng</p>
+            </div>
+            <div class="chi_tiet_ho_so-list-second">
+                <ul>
+                    	<a href="<c:url value="/views/home.jsp"/>">
+                	  <li>Hồ sơ bệnh nhân</li>
+                	</a>
+                	<a href="<c:url value="/views/themthuocmoi.jsp"/>">
+                	 <li>Tạo đơn thuốc mới</li>
+                	</a>
+                	<a href="<c:url value="/views/danhmucthuoc.jsp"/>">
+                    <li>Danh mục thuốc</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="chi_tiet_ho_so-category">
+            <div class="chi_tiet_ho_so-category-first">
+                <p>Thông tin chi tiết của bệnh nhân</p>
+            </div>
+            <div class="chi_tiet_ho_so-category-content">
+                <div class="chi_tiet_ho_so-category-content-headline">
+                    <p>Thông tin chi tiết của bệnh nhân</p>
+                </div>
+                <div class="chi_tiet_ho_so-category-content-first">
+                    <div class="chi_tiet_ho_so-category-content-first-A">
+                        <ul>
+                            <li>Tên bệnh nhân</li>
+                            <p>${model.tenBenhNhan}</p>
+                            <li>Tuổi</li>
+                            <p>${model.tuoi}</p>
+                            <li>Nhóm máu</li>
+                            <p>${model.nhomMau}</p>
+                            <li>Số điện thoại liên lạc</li>
+                            <p>${model.soDienThoai}</p>
+                            <li>chuẩn đoán của bác sĩ</li>
+                            <p>${model.benhLy}</p>
+                        </ul>
+                    </div>
+                    <div class="chi_tiet_ho_so-category-content-first-B">
+                        <ul>
+                            <li>Giới tính</li>
+                            <p>${model.gioiTinh}</p>
+                            <li>Cân nặng</li>
+                            <p>${model.canNang}</p>
+                            <li>Địa chỉ</li>
+                            <p>${model.diaChi}</p>
+                            <li class="thuoc_hien_tai">Thuốc hiện tại đang sử dụng của bệnh nhân</li>
+                            <div class="thuoc_hien_tai-contentt ">
+                                <div class="thuoc_hien_tai-content-A">
+                                    <p style = "width:228px;" >Abilify Tablets </p>
+                                    <p style = "width:140px;" >2 viên/ngày</p>
+                                    <p style = "width:140px;">1 Hộp /60 Viên</p>
+                                </div>
+                                <div class="thuoc_hien_tai-content-D">
+                                    <a href="<c:url value="/views/thuocdangsudung.jsp"/>"><p>Sử dụng thuốc này để kê lại đơn cho bệnh nhân</p></a>
+                                </div>
+                            </div>
+                            <div style = "display:none;">
+                            p>Bệnh nhân chưa được kê đơn thuốc</p>
+                            <div class="thuoc_hien_tai-content">
+                                <a href="">
+                                    <p>Kê đơn cho bệnh nhân</p>
+                                </a>
+                            </div>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

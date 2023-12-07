@@ -1,0 +1,39 @@
+package dao;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import mapper.donThuocMapper;
+import model.donThuoc;
+import model.thuoc;
+
+public class donThuocDao extends abstractDao<donThuoc> {
+	public List<donThuoc> listOfBn(int idbn){
+		String sql = "select top 3 * from donthuoc where idHoSoBenhNhan = ? order by ngayKeDon desc";
+		return query(sql, new donThuocMapper(), idbn);
+	}
+	public int createDonThuoc(int idbn,int idbs) {
+		LocalDate current = LocalDate.now();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Date currentDate = Date.valueOf(new String(current.format(format)));
+		String sql = "insert into donthuoc values(?,?,?)";
+		return save(sql, idbn,idbs,currentDate);
+	}
+	public boolean deleteDonThuoc(int iddt) {
+		String sql = "delete donthuoc where idDonThuoc = ?";
+		return update(sql, iddt);
+	}
+	public static void main(String[] args) {
+		int iddt = 12;
+		boolean check = false;
+		check = new donThuocDao().deleteDonThuoc(iddt);
+		System.out.println(check);
+	}
+	public List<thuoc> listOfId(int idThuoc) {
+		String sql = "select * from thuoc where idThuoc = ?";
+		return query(sql, new thuocMapper(), idThuoc);
+	}
+
+}

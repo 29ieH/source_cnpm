@@ -1,0 +1,23 @@
+package model;
+
+public class chiTietDonThuoc {
+private int idDonThuoc;
+private int idThuoc;
+private float soLuongDungTrenMotLan;
+private float soLanUongTrenMotNgay;
+private int soLuongMua;
+private String danDoCuaBacSy;
+public chiTietDonThuoc(int idDonThuoc, int idThuoc, float soLuongDungTrenMotLan, float soLanUongTrenMotNgay,
+		int soLuongMua, String danDoCuaBacSy) {
+	this.idDonThuoc = idDonThuoc;
+	this.idThuoc = idThuoc;
+	this.soLuongDungTrenMotLan = soLuongDungTrenMotLan;
+	this.soLanUongTrenMotNgay = soLanUongTrenMotNgay;
+	this.soLuongMua = soLuongMua;
+	this.danDoCuaBacSy = danDoCuaBacSy;
+}
+
+
+
+
+}

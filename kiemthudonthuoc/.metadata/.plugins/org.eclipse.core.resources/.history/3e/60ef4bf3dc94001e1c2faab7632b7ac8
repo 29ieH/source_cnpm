@@ -1,0 +1,56 @@
+package model;
+
+public class chiTietDonThuoc {
+private int idDonThuoc;
+private int idThuoc;
+private float soLuongDungTrenMotLan;
+private float soLanUongTrenMotNgay;
+private int soLuongMua;
+private String danDoCuaBacSy;
+public chiTietDonThuoc(int idDonThuoc, int idThuoc, float soLuongDungTrenMotLan, float soLanUongTrenMotNgay,
+		int soLuongMua, String danDoCuaBacSy) {
+	this.idDonThuoc = idDonThuoc;
+	this.idThuoc = idThuoc;
+	this.soLuongDungTrenMotLan = soLuongDungTrenMotLan;
+	this.soLanUongTrenMotNgay = soLanUongTrenMotNgay;
+	this.soLuongMua = soLuongMua;
+	this.danDoCuaBacSy = danDoCuaBacSy;
+}
+public int getIdDonThuoc() {
+	return idDonThuoc;
+}
+public void setIdDonThuoc(int idDonThuoc) {
+	this.idDonThuoc = idDonThuoc;
+}
+public int getIdThuoc() {
+	return idThuoc;
+}
+public void setIdThuoc(int idThuoc) {
+	this.idThuoc = idThuoc;
+}
+public float getSoLuongDungTrenMotLan() {
+	return soLuongDungTrenMotLan;
+}
+public void setSoLuongDungTrenMotLan(float soLuongDungTrenMotLan) {
+	this.soLuongDungTrenMotLan = soLuongDungTrenMotLan;
+}
+public float getSoLanUongTrenMotNgay() {
+	return soLanUongTrenMotNgay;
+}
+public void setSoLanUongTrenMotNgay(float soLanUongTrenMotNgay) {
+	this.soLanUongTrenMotNgay = soLanUongTrenMotNgay;
+}
+public int getSoLuongMua() {
+	return soLuongMua;
+}
+public void setSoLuongMua(int soLuongMua) {
+	this.soLuongMua = soLuongMua;
+}
+public String getDanDoCuaBacSy() {
+	return danDoCuaBacSy;
+}
+public void setDanDoCuaBacSy(String danDoCuaBacSy) {
+	this.danDoCuaBacSy = danDoCuaBacSy;
+}
+
+}

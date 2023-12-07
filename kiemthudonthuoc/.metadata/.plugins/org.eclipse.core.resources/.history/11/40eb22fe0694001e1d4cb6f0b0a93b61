@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+         <%@include file = "/util/taglib.jsp"%>
+     <%@include file = "/util/libfont.jsp"%>
+     <%@include file = "/util/libweb.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="<c:url value ="/css/style.css"/>">
+</head>
+				<% 
+					bacSi model = (bacSi)session.getAttribute("modelBS");
+					if(session!=null&model!=null){
+					String name = model.getTenBacSi();
+				%>
+<body>
+<div class = "w-1462px">
+
+  <div class="query">
+        <div class="query-list">
+            <div class="query-list-first">
+                <i class="fa-solid fa-bars"></i>
+                <p>Chức Năng</p>
+            </div>
+            <div class="function-list-second">
+                <ul>
+                	<a href="<c:url value="/views/home.jsp"/>">
+                	  <li>Hồ sơ bệnh nhân</li>
+                	</a>
+                	<a href="<c:url value="/views/themthuocmoi.jsp"/>">
+                	 <li>Tạo đơn thuốc mới</li>
+                	</a>
+                	<a href="<c:url value="/views/danhmucthuoc.jsp"/>">
+                    <li>Danh mục thuốc</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="query-category">
+            <div class="query-category-first">
+                <p>Sửa/Thêm thông tin hồ sơ bệnh nhân</p>
+            </div>
+            <div class="query-category-content">
+                <div class="query-category-content-headline">
+                    <p>Thông tin của bệnh nhân</p>
+                </div>
+                <div class="query-category-content-first">
+                    <form class="query-form" action="">
+                        <div class="query-category-content-first-A">
+                            <div class="input-A  ">
+                                <p>Tên bệnh nhân</p> <input class="text-A" type="text">
+                            </div>
+                            <div class="input-A ">
+                                <p>Giới tính</p> <input class="text-A1" type="text">
+                            </div>
+                            <div class="input-A ">
+                                <p>Địa chỉ</p> <input class="text-A2" type="text">
+                            </div>
+                            <div class="input-A ">
+                                <p>Số điện thoại liên lạc</p> <input class="text-A3" type="text">
+                            </div>
+                        </div>
+                        <div class="query-category-content-first-B">
+                            <div class="input-B ">
+                                <p>Cân nặng</p> <input class="text-B" type="text">
+                            </div>
+                            <div class="input-B ">
+                                <p>Nhóm máu</p> <input class="text-B1" type="text">
+                            </div>
+                            <div class="input-B ">
+                                <p>Chuẩn đoán</p> <input class="text-B2" type="text">
+                            </div>
+                        </div>
+                        <button type="submit" class="save">
+                            <a href="#" class="save-button">
+                                <p style = "margin:0" >Lưu</p>
+                            </a>
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+                    <% } else {
+                    	response.sendRedirect("/modulethuoc/index.jsp");
+                    }
+                    %>
+</html>

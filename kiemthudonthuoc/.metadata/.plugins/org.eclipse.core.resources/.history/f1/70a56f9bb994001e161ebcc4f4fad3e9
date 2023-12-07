@@ -1,0 +1,47 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mapper.tenThuocMapper;
+import mapper.thuocMapper;
+import model.chiTietDonThuoc;
+import model.thuoc;
+
+public class thuocDao extends abstractDao<thuoc> {
+	
+	public List<String> nameOfId(List<chiTietDonThuoc> listctdt){
+		List<String> result = new ArrayList<String>();
+		String sql = "select tenThuoc from thuoc as t join chitietdonthuoc as ctdt on t.idThuoc = ctdt.idThuoc where idDonThuoc = ? and ctdt.idThuoc = ?";
+		for (chiTietDonThuoc chiTietDonThuoc : listctdt) {
+			List<thuoc> list = query(sql, new tenThuocMapper(),chiTietDonThuoc.getIdDonThuoc(),chiTietDonThuoc.getIdThuoc());
+			thuoc newT = list.get(0);
+			result.add(newT.getTenThuoc());
+			list.clear();
+		}
+		return result;
+	}
+	public thuoc ThuocOfId(int id){
+		String sql = "select * from thuoc where idThuoc = ?";
+		List<thuoc> result =  query(sql, new thuocMapper(), id);
+		return result.get(0);
+	}
+	public String checkLieuDung(thuoc thuoc,float dose,float frequency,int soLuong) {
+		String error = "";
+		if(dose<thuoc.getDoseMin()) {
+			error = error+"Liều dùng quá thấp !";
+		}else if(dose>thuoc.getDoseMax()) {
+			error = error+"Liều dùng quá cao !";
+		}else if(frequency>thuoc.getFrequency()) {
+			error = error+"Tuần suất sử dụng quá cao !";
+		}else if((frequency*dose)<1||(frequency*dose)>(thuoc.getDoseMax()*thuoc.getFrequency())) {
+			error = error+"Số lượng thuốc dùng trong một ngày không phù hợp";
+		}
+		return error;
+	}
+	public static void main(String[] args) {
+		String error = "";
+		thuoc result = new thuocDao().ThuocOfId(2);
+		System.out.println(result);
+	}
+}

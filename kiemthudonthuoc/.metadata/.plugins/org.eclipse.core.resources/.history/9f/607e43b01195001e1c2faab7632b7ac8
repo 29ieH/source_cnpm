@@ -1,0 +1,20 @@
+package ServiceImp;
+
+import java.util.List;
+
+import dao.chiTietDTDao;
+import ifService.chiTietDonThuocIF;
+import model.chiTietDonThuoc;
+import model.fakeModel;
+
+public class chiTietDonThuocImp implements chiTietDonThuocIF {
+	public List<chiTietDonThuoc> listOfIdDt(int iddt) {
+		return new chiTietDTDao().listOfIdDt(iddt);
+	}
+
+	public boolean createCTDT(List<fakeModel> list) {
+		return new chiTietDTDao().createCtdt(list);
+	}
+
+
+}

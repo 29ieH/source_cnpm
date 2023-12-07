@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java/ServiceImp/chiTietDonThuocImp.java=UTF-8
+encoding//src/main/java/controller/dtbhsbn.java=UTF-8
+encoding//src/main/java/controller/kedonthuoc.java=UTF-8
+encoding//src/main/java/controller/login.java=UTF-8
+encoding//src/main/java/controller/searchhsbn.java=UTF-8
+encoding//src/main/java/controller/taodonthuoc.java=UTF-8
+encoding//src/main/java/dao/chiTietDTDao.java=UTF-8
+encoding//src/main/java/dao/thuocDao.java=UTF-8
+encoding//src/main/java/test/testLieuDung.java=UTF-8

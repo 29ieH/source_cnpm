@@ -1,0 +1,125 @@
+<%@page import="model.bacSi"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+         <%@include file = "/util/taglib.jsp"%>
+     <%@include file = "/util/libfont.jsp"%>
+     <%@include file = "/util/libweb.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="<c:url value ="/css/style.css"/>">
+<link rel="stylesheet" href="<c:url value ="/css/ds.css"/>">
+</head>
+<c:set var="model" value="${applicationScope.model}"/>
+<c:set var="listDonThuoc" value="${applicationScope.listDonThuoc}"/>
+				<% 
+					bacSi model = (bacSi)session.getAttribute("modelBS");
+					if(session!=null&model!=null){
+					String name = model.getTenBacSi();
+				%>
+<body>
+    <div class="w-1462px">
+        <div class="header">
+            <div class="header__logo">
+                <img class="header__logo__item" src="./view/images/logo.png" alt="">
+            </div>
+            <div style="width: 160px;"></div>
+            <ul class="header__list">
+                <li class="header__item">Home</li>
+                <li class="header__item">Contact</li>
+                <div class="user__login">
+                    <li class="header__item">
+                        <!-- <img class="header__item__img" alt=""> -->
+                        <img class="header__item__img" src="./view/images/doctor2.png" alt="">
+
+                    </li>
+                    <li class="header__item"></li>
+                    <a href="">
+                        <li class="header__item"><i class="fa-solid fa-right-from-bracket"></i></li>
+                    </a>
+                </div>
+            </ul>
+        </div>
+        <div class="list">
+            <div class="list-list">
+                <div class="list-list-first">
+                    <i class="fa-solid fa-bars"></i>
+                    <p>Chức Năng</p>
+                </div>
+                <div class="list-list-second">
+                    <ul>
+                        <a class="list_second__flex" href="">
+                            <i class="list_second__icon fa-regular fa-address-book"></i>
+                            <p class="list_second__text">Hồ sơ bệnh nhân</p>
+                        </a>
+
+                        <a class="list_second__flex" href="">
+                            <i class="list_second__icon fa-solid fa-capsules"></i>
+                            <p class="list_second__text"> Tạo đơn thuốc mới</p>
+                        </a>
+
+                        <a class="list_second__flex" href="">
+                            <i class="list_second__icon fa-solid fa-clipboard-list"></i>
+                            <p class="list_second__text"> Danh mục thuốc</p>
+                        </a>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="list-category">
+                <div class="list-category-first">
+                    <form class="form__search" action="" method="get">
+                        <input type="hidden" name="page" value="1">
+                        <input type="hidden" name="maxItemsPage" value="3">
+                        <div class="tra_cuu">
+                            <p>Tra cứu thuốc</p>
+                            <input name="name" class="input-list" type="text" placeholder="Nhập tên thuốc để tìm kiếm " name="name">
+                        </div>
+                        <button style="    border: none;background: none;" type="submit" class="custom-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                    <div class="list-category-first-title">
+                        <a style="display: flex; justify-content: center;
+                    align-items: center; color : #ffff;" href="">
+                            <i class="fa-solid fa-plus"></i>
+                            <p>Thêm hồ sơ bệnh nhân</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="list-category-content">
+                    <div class="list-category-content-headline">
+                        <div class="category-content-headline">
+                            <a href="">
+                                <div class="content-headline">
+                                    <p>Tên thuốc 1</p>
+                                    <span>Mô tả</span>
+                                    <a href="https://nhathuoclongchau.com.vn/thuoc/he-tim-mach-and-tao-mau">
+                                    <button>Click me</button>
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="content-headline">
+                                    <p>Tên thuốc 2</p>
+                                    <span>Mô tả</span>
+                                    <a href="https://nhathuoclongchau.com.vn/thuoc/he-tim-mach-and-tao-mau">
+                                    <button>Click me</button>
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="content-headline">
+                                    <p>Tên thuốc 3</p>
+                                    <span>Mô tả</span>
+                                    <a href="https://nhathuoclongchau.com.vn/thuoc/he-tim-mach-and-tao-mau">
+                                    <button>Click me</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+   <% } else {
+                    	response.sendRedirect("/modulethuoc/index.jsp");
+                    }
+                    %>
+</html>

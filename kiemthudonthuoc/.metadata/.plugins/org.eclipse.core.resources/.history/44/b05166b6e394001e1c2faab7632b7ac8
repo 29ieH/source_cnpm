@@ -1,0 +1,134 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import ServiceImp.chiTietDonThuocImp;
+import ServiceImp.donThuocImp;
+import ServiceImp.thuocImp;
+import dao.donThuocDao;
+import dao.thuocDao;
+import model.chiTietDonThuoc;
+import model.thuoc;
+
+/**
+ * Servlet implementation class kedonthuoc
+ */
+public class kedonthuoc extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public kedonthuoc() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			String idDonThuocStr = request.getParameter("iddt");
+			int idDonThuoc = 0;
+			int countz = 0;
+			String error = "";
+			try {
+				idDonThuoc = Integer.parseInt(idDonThuocStr);
+				List<thuoc> listThuoc = new ArrayList<thuoc>();
+				List<chiTietDonThuoc> listCtdtOld = new chiTietDonThuocImp().listOfIdDt(idDonThuoc);
+				int length = listCtdtOld.size();
+				System.out.println(listCtdtOld);
+				List<chiTietDonThuoc> listThuocAdd = new ArrayList<chiTietDonThuoc>();
+				int count = 0;
+				String idbnStr = request.getParameter("idbn");
+				String idbsStr = request.getParameter("idbs");
+				int idbnInt = 0;
+				int idbsInt = 0;
+				idbnInt = Integer.parseInt(idbnStr);
+				idbsInt = Integer.parseInt(idbsStr);
+				int idDTN = new donThuocImp().createDonThuoc(idbnInt, idbsInt);
+				for (chiTietDonThuoc chiTietDonThuoc : listCtdtOld) {
+					String tenThuoc = request.getParameter("tenThuoc"+count);
+					String danDoCuaBacSi = request.getParameter("danDoCuaBacSi"+count);
+					String doseStr = request.getParameter("dose"+count);
+					String frequencyStr = request.getParameter("frequency"+count);
+					String amountStr = request.getParameter("amount"+count);
+					String idThuoc = request.getParameter("idThuoc"+count);
+					float doseFloat = 0;
+					float frequencyFloat = 0;
+					int amountInt = 0;
+					int idThuocInt = 0;
+					try {
+						doseFloat = Float.parseFloat(doseStr);
+						frequencyFloat = Float.parseFloat(frequencyStr);
+						amountInt = Integer.parseInt(amountStr);
+						idThuocInt = Integer.parseInt(idThuoc);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					thuoc newThuoc = new thuocImp().getThuocById(idThuocInt);
+//					String check = "";
+					listThuoc.add(newThuoc);
+					System.out.println(listThuoc);
+					chiTietDonThuoc ctdt = new chiTietDonThuoc(idDTN, newThuoc.getIdThuoc(), doseFloat, frequencyFloat, amountInt, danDoCuaBacSi);
+					listThuocAdd.add(ctdt);
+					System.out.println(listThuocAdd);
+//					check = new thuocDao().checkLieuDung(newThuoc, doseFloat, frequencyFloat, amountInt); 
+//					System.out.println(newThuoc);
+//					System.out.println(check);
+//					if(check.length()>0) {
+//						error = check;
+//						countz = count;
+//						System.out.println("ii");
+//						break;
+//					}	
+					count++;
+				}
+				if(error.length()>0) {
+					boolean check = false;
+					check = new donThuocImp().delete(idDTN);
+					countz = countz+1;
+					String notifi = "Đơn thuốc số "+countz+error;
+					request.setAttribute("notifi", notifi);
+					RequestDispatcher rsd = request.getRequestDispatcher("/views/chitietdonthuoc.jsp");
+					rsd.forward(request, response);
+				}else if(error.length()==0) {
+					System.out.println(listThuoc);
+					int countzxc = listThuocAdd.size();
+					System.out.println(countzxc);
+					if(countzxc==length) {
+						System.out.println(listThuocAdd.toString());
+						ServletContext context = getServletContext();
+						context.setAttribute("listAdd", listThuocAdd);
+				 }
+					response.sendRedirect("/modulethuoc/addctdt");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

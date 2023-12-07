@@ -1,0 +1,9 @@
+package ifService;
+
+import java.util.List;
+
+import model.donThuoc;
+
+public interface donThuocIF {
+	List<donThuoc> listOfBn(int id);
+}

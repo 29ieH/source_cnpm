@@ -1,0 +1,16 @@
+package ServiceImp;
+
+import java.util.List;
+
+import dao.chiTietDTDao;
+import ifService.chiTietDonThuocIF;
+import model.chiTietDonThuoc;
+
+public class chiTietDonThuocImp implements chiTietDonThuocIF {
+	public List<chiTietDonThuoc> listOfIdDt(int iddt) {
+		return new chiTietDTDao().listOfIdDt(iddt);
+	}
+
+
+
+}

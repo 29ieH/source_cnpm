@@ -1,0 +1,25 @@
+package mapper;
+
+import java.sql.Date;
+import java.sql.ResultSet;
+
+import model.thuoc;
+
+public class thuocMapper implements rowMapper<thuoc> {
+
+	public thuoc mapRow(ResultSet rs) {
+		try {
+			int idThuoc = rs.getInt("idThuoc");
+			int idLoaiThuoc = rs.getInt("idLoaiThuoc");
+			String tenThuoc = rs.getNString("tenThuoc");
+			int soLuongTrongKho = rs.getInt("soLuongTrongKho");
+			String donVi = rs.getNString("doseMin");
+			Date ngayHetHan = rs.getDate("doseMax");
+			String moTaThuoc = rs.getNString("frequency");
+			thuoc newThuoc = new thuoc(idThuoc, idLoaiThuoc, tenThuoc, soLuongTrongKho, donVi, ngayHetHan, moTaThuoc);
+			return newThuoc;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+}

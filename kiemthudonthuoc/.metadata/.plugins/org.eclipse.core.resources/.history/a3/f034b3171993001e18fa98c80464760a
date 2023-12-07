@@ -1,0 +1,20 @@
+package ServiceImp;
+
+import java.util.List;
+
+import dao.bacSiDao;
+import ifService.bacSiIF;
+import model.bacSi;
+
+public class bacSiImp implements bacSiIF {
+
+	public List<bacSi> listAll() {
+		return new bacSiDao().listAll();
+	}
+
+	public bacSi getLogin(String taiKhoan, String matKhau) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

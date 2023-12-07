@@ -1,0 +1,22 @@
+package mapper;
+
+import java.sql.ResultSet;
+
+import model.bacSi;
+
+public class bacSiMapper implements rowMapper<bacSi> {
+
+	public bacSi mapRow(ResultSet rs) {
+		try {
+			int idBacSi = rs.getInt("idBacSi");
+			String tenBacSi = rs.getNString("tenBacSi");
+			String gioiTinh = rs.getNString("gioiTinh");
+			int tuoi = rs.getInt("tuoi");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,87 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import ServiceImp.chiTietDonThuocImp;
+import ServiceImp.donThuocImp;
+import ServiceImp.thuocImp;
+import dao.donThuocDao;
+import dao.thuocDao;
+import model.chiTietDonThuoc;
+import model.fakeModel;
+import model.thuoc;
+
+/**
+ * Servlet implementation class kedonthuoc
+ */
+public class kedonthuoc extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public kedonthuoc() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			String idDonThuocStr = request.getParameter("iddt");
+			int idDonThuoc = 0;
+			int countz = 0;
+			String error = "";
+			try {
+				idDonThuoc = Integer.parseInt(idDonThuocStr);
+				List<fakeModel> listFake = new ArrayList<fakeModel>();
+				List<chiTietDonThuoc> listCtdtOld = new chiTietDonThuocImp().listOfIdDt(idDonThuoc);
+				int length = listCtdtOld.size();
+				for(int count = 0 ; count < length ; count++) {
+					String danDoCuaBacSi = request.getParameter("danDoCuaBacSi"+count);
+					String doseStr = request.getParameter("dose"+count);
+					String frequencyStr = request.getParameter("frequency"+count);
+					String amountStr = request.getParameter("amount"+count);
+					String idThuoc = request.getParameter("idThuoc"+count);
+					try {
+						float doseFloat = Float.parseFloat(doseStr);
+						float frequencyFloat = Float.parseFloat(frequencyStr);
+						int idThuocInt = Integer.parseInt(idThuoc);
+						int soluong = Integer.parseInt(amountStr);
+						 fakeModel newModel = new fakeModel(doseFloat, frequencyFloat, soluong, idThuocInt, danDoCuaBacSi); 
+						 listFake.add(newModel);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}		
+			}
+			System.out.println(listFake.toString());
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

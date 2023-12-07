@@ -1,0 +1,16 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class testLieuDungTest {
+
+	@Test
+	public void test() {
+		testLieuDung check = new testLieuDung();
+		boolean rs = check.test();
+		assertTrue(rs);
+	}
+
+}

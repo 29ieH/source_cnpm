@@ -1,0 +1,70 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mapper.tenThuocMapper;
+import mapper.thuocMapper;
+import model.chiTietDonThuoc;
+import model.fakeModel;
+import model.thuoc;
+
+public class thuocDao extends abstractDao<thuoc> {
+	
+	public List<String> nameOfId(List<chiTietDonThuoc> listctdt){
+		List<String> result = new ArrayList<String>();
+		String sql = "select tenThuoc from thuoc as t join chitietdonthuoc as ctdt on t.idThuoc = ctdt.idThuoc where idDonThuoc = ? and ctdt.idThuoc = ?";
+		for (chiTietDonThuoc chiTietDonThuoc : listctdt) {
+			List<thuoc> list = query(sql, new tenThuocMapper(),chiTietDonThuoc.getIdDonThuoc(),chiTietDonThuoc.getIdThuoc());
+			thuoc newT = list.get(0);
+			result.add(newT.getTenThuoc());
+			list.clear();
+		}
+		return result;
+	}
+	public thuoc ThuocOfId(int id){
+		String sql = "select * from thuoc where idThuoc = ?";
+		List<thuoc> result =  query(sql, new thuocMapper(), id);
+		return result.get(0);
+	}
+	public String checkLieuDung(List<fakeModel> list) {
+		String error = "";
+		int count = 1;
+		for (fakeModel model : list) {
+			thuoc thuoc = new thuocDao().ThuocOfId(model.getIdThuoc());
+			if(model.getDose()<thuoc.getDoseMin()) {
+				error +="Thuốc "+count+" có liều dùng quá thấp !";
+			}else if(model.getDose()>thuoc.getDoseMax()) {
+				error+="Thuốc "+count+" có liều dùng quá cao !";
+			}else if(model.getFrequency()>thuoc.getFrequency()) {
+				error+="Thuốc "+count+" có tần suất dùng quá cao !";
+			}else if((model.getFrequency()*model.getDose())<1||(model.getFrequency()*model.getDose())>thuoc.getDoseMax()*thuoc.getFrequency()){
+				error+="Thuốc "+count+" có số lượng chỉ định không phù hợp!";
+			}
+			count++;
+		}
+		return error;
+	}
+	public int countName(String txtSearch) {
+		String sql = "select count(*) from thuoc where tenThuoc like ?";
+		String txt = "%"+txtSearch+"%";
+		return count(sql, txt);
+	}
+	public List<thuoc> search(String txt,int index,int size){
+		try {
+			String sql = "WITH x AS (\r\n" + 
+					"SELECT row_number() over (ORDER BY tenThuoc ASC) AS RowNum,* FROM thuoc WHERE \r\n" + 
+					"tenThuoc LIKE ?)select * from x where RowNum between ?*3-2 and ?*3;";
+			String txtPlus = "%"+txt+"%";
+			return query(sql, new thuocMapper() , txtPlus,index,size);
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public static void main(String[] args) {
+		List<thuoc> list = new thuocDao().search("D", 1, 3);
+		System.out.println(list);
+	}
+}

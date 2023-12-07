@@ -1,0 +1,9 @@
+package ifService;
+
+import java.util.List;
+
+import model.chiTietDonThuoc;
+
+public interface chiTietDonThuocIF {
+	public List<chiTietDonThuoc> listOfIdDt(int iddt);
+}
